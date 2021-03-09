@@ -8,7 +8,7 @@ Time spent: **5** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User can sign up to create a new account using Parse authentication.
+- [X] User can sign up to create a new account using Parse authentication.
 - [X] User can log in and log out of his or her account.
 - [X] The current signed in user is persisted across app restarts.
 - [X] User can take a photo, add a caption, and post it to "Instagram".
@@ -25,10 +25,15 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+- Here's a walkthrough of implemented user stories:
 
 <img src='walkThrough1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src='walkThrough1.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+- New User in Database
+<img src='newUser.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+- New Post in Database
+<img src='newPost.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
