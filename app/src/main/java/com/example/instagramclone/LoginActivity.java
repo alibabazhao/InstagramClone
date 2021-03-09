@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,9 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void signupUser(String username, String password) {
-    }
-
     private void loginUser(String username, String password) {
         Log.i(TAG, "attempting to login user: "+username);
 
@@ -72,11 +70,33 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 goMainActivity();
-                Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    
+
+    private void signupUser(String username, String password) {
+        // Create the ParseUser
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+
+        // Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Hooray! Let them use the app now.
+                    Log.e(TAG, "Issue with Signup", e);
+                    Toast.makeText(LoginActivity.this, "Issue with Signup!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                goMainActivity();
+                Toast.makeText(LoginActivity.this, "Sign up Success!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void goMainActivity() {
         Intent i=new Intent(this, MainActivity.class);
         startActivity(i);
