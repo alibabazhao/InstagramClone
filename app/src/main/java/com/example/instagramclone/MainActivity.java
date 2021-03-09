@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
+    public Button btnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit=findViewById(R.id.btnSubmit);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 launchCamera();
@@ -58,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
         
         //queryPosts();
-
         btnSubmit.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 String description=etDescription.getText().toString();
@@ -74,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser=ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+            }
+        });
+
+        btnLogout=findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                goLoginActivity();
             }
         });
     }
@@ -167,5 +176,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void goLoginActivity() {
+        Intent i=new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 }

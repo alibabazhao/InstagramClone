@@ -9,6 +9,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT" />
 
     <EditText
         android:id="@+id/etDescription"
