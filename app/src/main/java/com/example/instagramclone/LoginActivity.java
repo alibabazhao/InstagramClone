@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -18,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG="LoginActivity";
+
+    private ImageView ivLogo;
+
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
@@ -32,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         if(ParseUser.getCurrentUser()!=null){
             goMainActivity();
         }
+
+        ivLogo=findViewById(R.id.ivLogo);
 
         etUsername=findViewById(R.id.etUsername);
         etPassword=findViewById(R.id.etPassword);
@@ -76,6 +82,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signupUser(String username, String password) {
+        if(username.length()==0 || password.length()==0){
+            Toast.makeText(LoginActivity.this, "Issue with Signup!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         // Create the ParseUser
         ParseUser user = new ParseUser();
         // Set core properties
@@ -91,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Issue with Signup!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                goMainActivity();
+                //goMainActivity();
                 Toast.makeText(LoginActivity.this, "Sign up Success!", Toast.LENGTH_SHORT).show();
             }
         });
